@@ -10,8 +10,8 @@ export default function Header() {
               viewBox="0 0 120 120"
               xmlns="http://www.w3.org/2000/svg"
               className="w-full h-full"
-              alt="Midnight Ink"
             >
+              <title>Midnight Ink</title>
               <defs>
                 <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
                   <stop offset="0%" style={{stopColor: '#1f2937', stopOpacity: 1}} />
