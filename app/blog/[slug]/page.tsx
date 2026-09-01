@@ -58,7 +58,8 @@ export default async function BlogPost({
       }
     : undefined;
 
-  const publishDate = new Date(post.sys.createdAt).toLocaleDateString('en-US', {
+  const dateToUse = fields.publishDate || post.sys.createdAt;
+  const publishDate = new Date(dateToUse).toLocaleDateString('en-US', {
     year: 'numeric',
     month: 'long',
     day: 'numeric',
