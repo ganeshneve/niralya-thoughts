@@ -1,45 +1,169 @@
-<svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
-  <!-- Define gradient -->
+<svg viewBox="0 0 200 240" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#1f2937;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#374151;stop-opacity:1" />
-    </linearGradient>
+    <style>
+      .hydrangea-petal { fill: #7BA3D8; }
+      .hydrangea-petal-dark { fill: #5A7FA8; }
+      .rose { fill: #D4A574; }
+      .rose-light { fill: #E8C4A0; }
+      .leaf { fill: #6B9E7F; }
+      .leaf-light { fill: #8FB59E; }
+      .stem { stroke: #6B9E7F; stroke-width: 1; fill: none; }
+      .banner { fill: #F5F1E8; stroke: #1B3B6F; stroke-width: 1.5; }
+      .border-outer { fill: none; stroke: #1B3B6F; stroke-width: 2; }
+      .border-inner { fill: none; stroke: #1B3B6F; stroke-width: 1; }
+      .dot { fill: #1B3B6F; }
+    </style>
   </defs>
 
-  <!-- Left decorative flourish -->
-  <g opacity="0.7">
-    <path d="M 15 45 Q 10 50 12 60 Q 14 70 20 72" stroke="#9ca3af" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-    <circle cx="18" cy="48" r="2.5" fill="#9ca3af" opacity="0.6"/>
-    <circle cx="15" cy="58" r="2" fill="#9ca3af" opacity="0.5"/>
-    <path d="M 20 40 L 25 42 L 23 48" stroke="#d1d5db" stroke-width="1" fill="none"/>
+  <!-- Outer decorative circle with border -->
+  <circle cx="100" cy="100" r="95" class="border-outer"/>
+
+  <!-- Inner circle -->
+  <circle cx="100" cy="100" r="90" class="border-inner"/>
+
+  <!-- Decorative dots around outer circle -->
+  <g class="dot">
+    <circle cx="100" cy="15" r="2"/>
+    <circle cx="130" cy="22" r="1.5"/>
+    <circle cx="160" cy="40" r="1.5"/>
+    <circle cx="185" cy="70" r="2"/>
+    <circle cx="190" cy="100" r="1.5"/>
+    <circle cx="185" cy="130" r="1.5"/>
+    <circle cx="160" cy="160" r="2"/>
+    <circle cx="100" cy="185" r="1.5"/>
+    <circle cx="70" cy="22" r="1.5"/>
+    <circle cx="40" cy="40" r="1.5"/>
+    <circle cx="15" cy="70" r="2"/>
+    <circle cx="10" cy="100" r="1.5"/>
+    <circle cx="15" cy="130" r="1.5"/>
+    <circle cx="40" cy="160" r="2"/>
   </g>
 
-  <!-- Central M letter -->
-  <text x="60" y="85" font-family="Georgia, serif" font-size="72" font-weight="bold" text-anchor="middle" fill="url(#logoGradient)" letter-spacing="-2">M</text>
+  <!-- Top flowers decoration -->
+  <g opacity="0.8">
+    <!-- Top left small flower -->
+    <circle cx="65" cy="28" r="4" fill="#A8D5E2"/>
+    <circle cx="62" cy="30" r="2.5" fill="#7BA3D8"/>
+    <circle cx="65" cy="32" r="2.5" fill="#7BA3D8"/>
+    <circle cx="68" cy="30" r="2.5" fill="#7BA3D8"/>
 
-  <!-- Right decorative flourish -->
-  <g opacity="0.7">
-    <path d="M 105 45 Q 110 50 108 60 Q 106 70 100 72" stroke="#9ca3af" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-    <circle cx="102" cy="48" r="2.5" fill="#9ca3af" opacity="0.6"/>
-    <circle cx="105" cy="58" r="2" fill="#9ca3af" opacity="0.5"/>
-    <path d="M 100 40 L 95 42 L 97 48" stroke="#d1d5db" stroke-width="1" fill="none"/>
+    <!-- Top right small flower -->
+    <circle cx="135" cy="25" r="4" fill="#A8D5E2"/>
+    <circle cx="132" cy="27" r="2.5" fill="#7BA3D8"/>
+    <circle cx="135" cy="29" r="2.5" fill="#7BA3D8"/>
+    <circle cx="138" cy="27" r="2.5" fill="#7BA3D8"/>
   </g>
 
-  <!-- Top decorative accent -->
-  <g opacity="0.5">
-    <path d="M 35 20 Q 40 18 45 20" stroke="#9ca3af" stroke-width="1" fill="none" stroke-linecap="round"/>
-    <path d="M 75 20 Q 80 18 85 20" stroke="#9ca3af" stroke-width="1" fill="none" stroke-linecap="round"/>
-    <circle cx="40" cy="22" r="1.5" fill="#9ca3af"/>
-    <circle cx="80" cy="22" r="1.5" fill="#9ca3af"/>
+  <!-- Left side hydrangea -->
+  <g>
+    <!-- Hydrangea flowers (blue) -->
+    <g class="hydrangea-petal">
+      <circle cx="35" cy="75" r="3.5"/>
+      <circle cx="32" cy="82" r="3.5"/>
+      <circle cx="38" cy="85" r="3.5"/>
+      <circle cx="45" cy="82" r="3"/>
+      <circle cx="35" cy="95" r="3.5"/>
+      <circle cx="42" cy="100" r="3"/>
+    </g>
+    <!-- Smaller petals -->
+    <g class="hydrangea-petal-dark" opacity="0.7">
+      <circle cx="40" cy="78" r="2.5"/>
+      <circle cx="30" cy="90" r="2.5"/>
+      <circle cx="45" cy="92" r="2.5"/>
+    </g>
+    <!-- Leaves -->
+    <ellipse cx="28" cy="105" rx="6" ry="10" class="leaf" transform="rotate(-20 28 105)"/>
+    <ellipse cx="20" cy="95" rx="5" ry="8" class="leaf-light" transform="rotate(30 20 95)"/>
+    <path d="M 25 85 Q 22 92 28 98" class="stem"/>
   </g>
 
-  <!-- Bottom decorative accent -->
-  <g opacity="0.5">
-    <path d="M 40 100 Q 45 102 50 100" stroke="#d1d5db" stroke-width="1" fill="none" stroke-linecap="round"/>
-    <path d="M 70 100 Q 75 102 80 100" stroke="#d1d5db" stroke-width="1" fill="none" stroke-linecap="round"/>
+  <!-- Right side hydrangea -->
+  <g>
+    <!-- Hydrangea flowers (blue) -->
+    <g class="hydrangea-petal">
+      <circle cx="165" cy="75" r="3.5"/>
+      <circle cx="168" cy="82" r="3.5"/>
+      <circle cx="162" cy="85" r="3.5"/>
+      <circle cx="155" cy="82" r="3"/>
+      <circle cx="165" cy="95" r="3.5"/>
+      <circle cx="158" cy="100" r="3"/>
+    </g>
+    <!-- Smaller petals -->
+    <g class="hydrangea-petal-dark" opacity="0.7">
+      <circle cx="160" cy="78" r="2.5"/>
+      <circle cx="170" cy="90" r="2.5"/>
+      <circle cx="155" cy="92" r="2.5"/>
+    </g>
+    <!-- Leaves -->
+    <ellipse cx="172" cy="105" rx="6" ry="10" class="leaf" transform="rotate(20 172 105)"/>
+    <ellipse cx="180" cy="95" rx="5" ry="8" class="leaf-light" transform="rotate(-30 180 95)"/>
+    <path d="M 175 85 Q 178 92 172 98" class="stem"/>
   </g>
 
-  <!-- Subtle border circle -->
-  <circle cx="60" cy="60" r="55" stroke="#e5e7eb" stroke-width="0.5" fill="none" opacity="0.4"/>
+  <!-- Left side roses -->
+  <g>
+    <!-- Rose petals -->
+    <circle cx="48" cy="110" r="5" class="rose-light"/>
+    <circle cx="52" cy="108" r="4.5" class="rose"/>
+    <circle cx="55" cy="112" r="4" class="rose-light"/>
+    <circle cx="50" cy="116" r="4.5" class="rose"/>
+    <!-- Center -->
+    <circle cx="52" cy="112" r="2.5" fill="#C49060"/>
+  </g>
+
+  <!-- Right side roses -->
+  <g>
+    <!-- Rose petals -->
+    <circle cx="152" cy="110" r="5" class="rose-light"/>
+    <circle cx="148" cy="108" r="4.5" class="rose"/>
+    <circle cx="145" cy="112" r="4" class="rose-light"/>
+    <circle cx="150" cy="116" r="4.5" class="rose"/>
+    <!-- Center -->
+    <circle cx="148" cy="112" r="2.5" fill="#C49060"/>
+  </g>
+
+  <!-- Bottom left small flowers -->
+  <g opacity="0.8">
+    <circle cx="30" cy="140" r="3.5" fill="#E8C9D8"/>
+    <circle cx="28" cy="142" r="2" fill="#D89FB8"/>
+    <circle cx="30" cy="144" r="2" fill="#D89FB8"/>
+    <circle cx="32" cy="142" r="2" fill="#D89FB8"/>
+  </g>
+
+  <!-- Bottom right small flowers -->
+  <g opacity="0.8">
+    <circle cx="170" cy="140" r="3.5" fill="#E8C9D8"/>
+    <circle cx="172" cy="142" r="2" fill="#D89FB8"/>
+    <circle cx="170" cy="144" r="2" fill="#D89FB8"/>
+    <circle cx="168" cy="142" r="2" fill="#D89FB8"/>
+  </g>
+
+  <!-- Foliage stems and leaves scattered -->
+  <g class="leaf" opacity="0.8">
+    <ellipse cx="55" cy="135" rx="4" ry="7" transform="rotate(-30 55 135)"/>
+    <ellipse cx="145" cy="135" rx="4" ry="7" transform="rotate(30 145 135)"/>
+    <path d="M 60 120 Q 65 125 70 120" class="stem" opacity="0.6"/>
+    <path d="M 140 120 Q 135 125 130 120" class="stem" opacity="0.6"/>
+  </g>
+
+  <!-- Large decorative M -->
+  <text x="100" y="115" font-family="cursive" font-size="80" font-weight="bold" text-anchor="middle" fill="#1B3B6F" letter-spacing="-3">M</text>
+
+  <!-- Banner/Ribbon at bottom -->
+  <g>
+    <!-- Banner body -->
+    <path d="M 50 155 L 55 145 L 145 145 L 150 155 Q 150 158 145 160 L 55 160 Q 50 158 50 155 Z" class="banner"/>
+    <!-- Banner folds/details -->
+    <path d="M 55 145 Q 60 150 70 148" stroke="#1B3B6F" stroke-width="1" fill="none" opacity="0.4"/>
+    <path d="M 145 145 Q 140 150 130 148" stroke="#1B3B6F" stroke-width="1" fill="none" opacity="0.4"/>
+  </g>
+
+  <!-- Gingham pattern background (subtle) -->
+  <defs>
+    <pattern id="gingham" x="0" y="0" width="8" height="8" patternUnits="userSpaceOnUse">
+      <rect x="0" y="0" width="4" height="4" fill="#E8EEF7" opacity="0.3"/>
+      <rect x="4" y="4" width="4" height="4" fill="#E8EEF7" opacity="0.3"/>
+    </pattern>
+  </defs>
+  <circle cx="100" cy="80" r="70" fill="url(#gingham)"/>
 </svg>
