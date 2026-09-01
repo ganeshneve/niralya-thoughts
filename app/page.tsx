@@ -39,6 +39,7 @@ export default async function Home() {
                     title={fields.title}
                     excerpt={fields.excerpt}
                     date={post.sys.createdAt}
+                    category={fields.category}
                     image={image}
                     slug={fields.slug}
                   />
