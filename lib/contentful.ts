@@ -55,9 +55,15 @@ export async function getBlogPosts() {
   const client = getContentfulClient();
   const entries = await client.getEntries({
     content_type: 'blogPost',
-    order: ['-sys.createdAt'],
+    limit: 1000,
   });
-  return entries.items;
+
+  // Sort by publishDate (if available) or createdAt, newest first
+  return entries.items.sort((a: any, b: any) => {
+    const dateA = new Date((a.fields as any)?.publishDate || a.sys.createdAt).getTime();
+    const dateB = new Date((b.fields as any)?.publishDate || b.sys.createdAt).getTime();
+    return dateB - dateA;
+  });
 }
 
 export async function getFeaturedPost() {
