@@ -15,7 +15,8 @@ interface PostCardProps {
 }
 
 export default function PostCard({ title, excerpt, date, category, image, slug }: PostCardProps) {
-  const formattedDate = new Date(date).toLocaleDateString('en-US', {
+  const dateToUse = date || new Date().toISOString();
+  const formattedDate = new Date(dateToUse).toLocaleDateString('en-US', {
     year: 'numeric',
     month: 'short',
     day: 'numeric',
