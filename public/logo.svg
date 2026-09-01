@@ -146,8 +146,8 @@
     <path d="M 140 120 Q 135 125 130 120" class="stem" opacity="0.6"/>
   </g>
 
-  <!-- Large decorative M -->
-  <text x="100" y="115" font-family="cursive" font-size="80" font-weight="bold" text-anchor="middle" fill="#1B3B6F" letter-spacing="-3">M</text>
+  <!-- Large decorative N -->
+  <text x="100" y="115" font-family="cursive" font-size="80" font-weight="bold" text-anchor="middle" fill="#1B3B6F" letter-spacing="-3">N</text>
 
   <!-- Banner/Ribbon at bottom -->
   <g>
