@@ -84,7 +84,9 @@ export default async function BlogPost({ params }: { params: { slug: string } })
             {fields.content && (
               <div
                 dangerouslySetInnerHTML={{
-                  __html: fields.content.replace(/\n/g, '<br />'),
+                  __html: typeof fields.content === 'string'
+                    ? fields.content.replace(/\n/g, '<br />')
+                    : JSON.stringify(fields.content, null, 2).replace(/\n/g, '<br />'),
                 }}
               />
             )}
