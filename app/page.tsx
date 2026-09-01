@@ -1,6 +1,5 @@
 import Header from '@/components/Header';
 import PostCard from '@/components/PostCard';
-import Subscribe from '@/components/Subscribe';
 import { getBlogPosts } from '@/lib/contentful';
 
 export const revalidate = 60; // Revalidate every 60 seconds
@@ -53,8 +52,6 @@ export default async function Home() {
           )}
         </div>
       </section>
-
-      <Subscribe />
     </>
   );
 }
