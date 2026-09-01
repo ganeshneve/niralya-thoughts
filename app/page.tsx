@@ -23,7 +23,6 @@ export default async function Home() {
       {/* All Stories */}
       <section className="bg-gray-50 py-16 px-6 md:px-10">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl font-bold text-gray-900 mb-12">All Stories</h2>
           {allPosts.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {allPosts.map((post) => {
