@@ -14,36 +14,37 @@ interface HeroProps {
 
 export default function Hero({ title, excerpt, image, slug }: HeroProps) {
   return (
-    <section className="bg-gray-50 py-20 px-10">
-      <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+    <section className="bg-gray-50 py-12 px-6 md:px-10">
+      <div className="max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
           {/* Image */}
           {image && (
-            <div className="rounded-xl overflow-hidden h-96 md:h-full">
+            <div className="rounded-xl overflow-hidden h-64 md:h-80">
               <Image
                 src={image.url}
                 alt={title}
                 width={image.width}
                 height={image.height}
                 className="w-full h-full object-cover"
+                priority
               />
             </div>
           )}
 
           {/* Content */}
-          <div className="flex flex-col gap-5">
-            <h2 className="text-5xl md:text-6xl font-bold text-gray-900 leading-tight">
+          <div className="flex flex-col gap-3">
+            <p className="text-sm font-semibold text-blue-600 uppercase tracking-wide">Featured Story</p>
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 leading-tight">
               {title}
             </h2>
-            <p className="text-xl italic text-blue-600">Featured Story</p>
-            <p className="text-lg text-gray-600 leading-relaxed">
+            <p className="text-base md:text-lg text-gray-600 leading-relaxed line-clamp-3">
               {excerpt}
             </p>
             <Link
               href={`/blog/${slug}`}
-              className="inline-block bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition w-fit"
+              className="inline-block bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-medium transition w-fit mt-2"
             >
-              Read the Full Story
+              Read Full Story
             </Link>
           </div>
         </div>
