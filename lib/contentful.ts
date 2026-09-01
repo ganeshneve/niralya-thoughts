@@ -72,26 +72,37 @@ export async function getFeaturedPost() {
 
 export async function getBlogPostBySlug(slug: string) {
   const client = getContentfulClient();
-  // Decode URL-encoded slug and trim whitespace
-  const decodedSlug = decodeURIComponent(slug).trim();
+  // Decode URL-encoded slug and normalize whitespace to hyphens
+  let normalizedSlug = decodeURIComponent(slug).trim();
+  // Replace spaces with hyphens (standard slug format)
+  normalizedSlug = normalizedSlug.replace(/\s+/g, '-').toLowerCase();
+
+  console.log(`[getBlogPostBySlug] Searching for: "${normalizedSlug}" (from URL: "${slug}")`);
 
   const entries = await client.getEntries({
     content_type: 'blogPost',
-    'fields.slug': decodedSlug,
+    'fields.slug': normalizedSlug,
   });
 
-  if (!entries.items[0]) {
-    console.warn(`Blog post not found for slug: "${decodedSlug}" (original: "${slug}")`);
-    // Try alternative: search with different case or partial match
-    const allPosts = await getBlogPosts();
-    const post = allPosts.find(
-      (p: any) => (p.fields as any)?.slug?.toLowerCase() === decodedSlug.toLowerCase()
-    );
-    if (post) {
-      console.log(`Found post with case-insensitive match: "${decodedSlug}"`);
-      return post;
-    }
+  if (entries.items[0]) {
+    console.log(`[getBlogPostBySlug] Found post: ${entries.items[0].fields.title}`);
+    return entries.items[0];
   }
 
-  return entries.items[0];
+  console.warn(`[getBlogPostBySlug] Exact match not found, trying case-insensitive...`);
+
+  // Try alternative: case-insensitive matching
+  const allPosts = await getBlogPosts();
+  const post = allPosts.find((p: any) => {
+    const postSlug = ((p.fields as any)?.slug || '').toLowerCase().trim();
+    return postSlug === normalizedSlug || postSlug === decodeURIComponent(slug).toLowerCase();
+  });
+
+  if (post) {
+    console.log(`[getBlogPostBySlug] Found with case-insensitive match: "${normalizedSlug}"`);
+    return post;
+  }
+
+  console.error(`[getBlogPostBySlug] No match found for: "${normalizedSlug}"`);
+  return undefined;
 }
