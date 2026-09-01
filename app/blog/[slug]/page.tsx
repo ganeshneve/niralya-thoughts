@@ -75,6 +75,13 @@ export default async function BlogPost({
           </Link>
 
           <header className="mb-12">
+            <div className="flex items-center gap-3 mb-4">
+              {fields.category && (
+                <span className="bg-gray-100 text-gray-700 text-sm font-medium px-3 py-1 rounded-full">
+                  {fields.category}
+                </span>
+              )}
+            </div>
             <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">
               {fields.title}
             </h1>
