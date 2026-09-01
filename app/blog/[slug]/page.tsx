@@ -67,38 +67,91 @@ export default async function BlogPost({
     <>
       <Header />
 
-      <article className="bg-gray-50 py-12 px-10">
-        <div className="max-w-3xl mx-auto">
-          <Link href="/" className="text-blue-600 hover:text-blue-700 mb-8 inline-block">
+      <article className="bg-white py-16 px-6 md:px-10">
+        <div className="max-w-2xl mx-auto">
+          <Link href="/" className="text-gray-600 hover:text-gray-900 mb-12 inline-flex items-center gap-2 font-medium transition">
             ← Back to home
           </Link>
 
-          <h1 className="text-5xl font-bold text-gray-900 mb-4">{fields.title}</h1>
-          <p className="text-gray-600 mb-8">{publishDate}</p>
+          <header className="mb-12">
+            <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">
+              {fields.title}
+            </h1>
+            <time className="text-lg text-gray-500 font-light">{publishDate}</time>
+          </header>
 
           {image && (
-            <div className="rounded-xl overflow-hidden h-96 mb-10">
+            <div className="rounded-2xl overflow-hidden mb-16 aspect-video">
               <Image
                 src={image.url}
                 alt={fields.title}
                 width={image.width}
                 height={image.height}
                 className="w-full h-full object-cover"
+                priority
               />
             </div>
           )}
 
-          <div className="prose prose-lg max-w-none text-gray-900">
-            {fields.content && (
-              typeof fields.content === 'string' ? (
-                <div dangerouslySetInnerHTML={{
-                  __html: fields.content.replace(/\n/g, '<br />'),
-                }} />
-              ) : (
-                documentToReactComponents(fields.content)
-              )
-            )}
-          </div>
+          <div className="space-y-6 text-gray-700 leading-relaxed">
+            <style>{`
+              .prose-content > * + * {
+                margin-top: 1.5rem;
+              }
+              .prose-content h2 {
+                font-size: 1.875rem;
+                font-weight: 700;
+                margin-top: 2.5rem;
+                margin-bottom: 1rem;
+                color: #111827;
+              }
+              .prose-content h3 {
+                font-size: 1.5rem;
+                font-weight: 600;
+                margin-top: 2rem;
+                margin-bottom: 0.75rem;
+                color: #1f2937;
+              }
+              .prose-content p {
+                line-height: 1.75;
+                margin-bottom: 1.5rem;
+              }
+              .prose-content ul, .prose-content ol {
+                margin-left: 1.5rem;
+                margin-bottom: 1.5rem;
+              }
+              .prose-content li {
+                line-height: 1.75;
+                margin-bottom: 0.5rem;
+              }
+              .prose-content blockquote {
+                border-left: 4px solid #2563eb;
+                padding-left: 1.5rem;
+                font-style: italic;
+                color: #6b7280;
+                margin: 1.5rem 0;
+              }
+              .prose-content a {
+                color: #2563eb;
+                text-decoration: underline;
+                transition: color 0.2s;
+              }
+              .prose-content a:hover {
+                color: #1d4ed8;
+              }
+            `}</style>
+              <div className="prose-content">
+                {fields.content && (
+                  typeof fields.content === 'string' ? (
+                    <div dangerouslySetInnerHTML={{
+                      __html: fields.content.replace(/\n/g, '<br />'),
+                    }} />
+                  ) : (
+                    documentToReactComponents(fields.content)
+                  )
+                )}
+              </div>
+            </div>
         </div>
       </article>
 
