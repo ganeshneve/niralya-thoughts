@@ -6,13 +6,23 @@ import Footer from '@/components/Footer';
 import { getFeaturedPost, getBlogPosts } from '@/lib/contentful';
 
 export default async function Home() {
-  const [featuredPost, allPosts] = await Promise.all([
-    getFeaturedPost(),
-    getBlogPosts(),
-  ]);
+  let featuredPost: any = null;
+  let allPosts: any[] = [];
+
+  try {
+    const [featured, posts] = await Promise.all([
+      getFeaturedPost(),
+      getBlogPosts(),
+    ]);
+    featuredPost = featured;
+    allPosts = posts;
+  } catch (error) {
+    console.error('Failed to load blog posts from Contentful:', error);
+    // Continue with empty data - show placeholder UI
+  }
 
   const posts = allPosts.filter(
-    (post) => post.sys.id !== featuredPost?.sys.id
+    (post) => post?.sys.id !== featuredPost?.sys.id
   ).slice(0, 9);
 
   const featured = featuredPost?.fields as any;

@@ -1,27 +1,58 @@
 import { createClient } from 'contentful';
 
-if (!process.env.NEXT_PUBLIC_CONTENTFUL_SPACE_ID) {
-  throw new Error('NEXT_PUBLIC_CONTENTFUL_SPACE_ID is not set');
-}
-if (!process.env.NEXT_PUBLIC_CONTENTFUL_ACCESS_TOKEN) {
-  throw new Error('NEXT_PUBLIC_CONTENTFUL_ACCESS_TOKEN is not set');
+let _contentfulClient: any = null;
+let _previewClient: any = null;
+
+export function getContentfulClient() {
+  if (_contentfulClient) return _contentfulClient;
+
+  const spaceId = process.env.NEXT_PUBLIC_CONTENTFUL_SPACE_ID;
+  const accessToken = process.env.NEXT_PUBLIC_CONTENTFUL_ACCESS_TOKEN;
+
+  if (!spaceId || !accessToken) {
+    throw new Error(
+      'Contentful environment variables not set. ' +
+      'NEXT_PUBLIC_CONTENTFUL_SPACE_ID and NEXT_PUBLIC_CONTENTFUL_ACCESS_TOKEN are required. ' +
+      'See .env.local.example for setup instructions.'
+    );
+  }
+
+  _contentfulClient = createClient({
+    space: spaceId,
+    accessToken: accessToken,
+  });
+
+  return _contentfulClient;
 }
 
-export const contentfulClient = createClient({
-  space: process.env.NEXT_PUBLIC_CONTENTFUL_SPACE_ID,
-  accessToken: process.env.NEXT_PUBLIC_CONTENTFUL_ACCESS_TOKEN,
-});
+export function getPreviewClient() {
+  if (_previewClient) return _previewClient;
 
-export const previewClient = process.env.NEXT_PUBLIC_CONTENTFUL_PREVIEW_TOKEN
-  ? createClient({
-      space: process.env.NEXT_PUBLIC_CONTENTFUL_SPACE_ID,
-      accessToken: process.env.NEXT_PUBLIC_CONTENTFUL_PREVIEW_TOKEN,
-      host: 'preview.contentful.com',
-    })
-  : contentfulClient;
+  const spaceId = process.env.NEXT_PUBLIC_CONTENTFUL_SPACE_ID;
+  const previewToken = process.env.NEXT_PUBLIC_CONTENTFUL_PREVIEW_TOKEN;
+
+  if (!spaceId) {
+    throw new Error(
+      'NEXT_PUBLIC_CONTENTFUL_SPACE_ID is required. ' +
+      'See .env.local.example for setup instructions.'
+    );
+  }
+
+  if (!previewToken) {
+    return getContentfulClient();
+  }
+
+  _previewClient = createClient({
+    space: spaceId,
+    accessToken: previewToken,
+    host: 'preview.contentful.com',
+  });
+
+  return _previewClient;
+}
 
 export async function getBlogPosts() {
-  const client = contentfulClient;
+  const client = getContentfulClient();
   const entries = await client.getEntries({
     content_type: 'blogPost',
     order: ['-sys.createdAt'],
@@ -30,7 +61,7 @@ export async function getBlogPosts() {
 }
 
 export async function getFeaturedPost() {
-  const client = contentfulClient;
+  const client = getContentfulClient();
   const entries = await client.getEntries({
     content_type: 'blogPost',
     order: ['-sys.createdAt'],
@@ -40,7 +71,7 @@ export async function getFeaturedPost() {
 }
 
 export async function getBlogPostBySlug(slug: string) {
-  const client = contentfulClient;
+  const client = getContentfulClient();
   const entries = await client.getEntries({
     content_type: 'blogPost',
     'fields.slug': slug,

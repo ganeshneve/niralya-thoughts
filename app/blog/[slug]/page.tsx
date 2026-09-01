@@ -6,10 +6,20 @@ import Footer from '@/components/Footer';
 import { getBlogPostBySlug, getBlogPosts } from '@/lib/contentful';
 
 export async function generateStaticParams() {
-  const posts = await getBlogPosts();
-  return posts.map((post) => ({
-    slug: (post.fields as any).slug,
-  }));
+  try {
+    const posts = await getBlogPosts();
+    return posts.map((post: any) => ({
+      slug: (post.fields as any).slug,
+    }));
+  } catch (error) {
+    // If Contentful isn't configured, return empty array
+    // Pages will be generated on-demand at request time instead
+    console.log(
+      'Contentful not configured - blog posts will be generated on-demand. ' +
+      'Add environment variables to NEXT_PUBLIC_CONTENTFUL_SPACE_ID and NEXT_PUBLIC_CONTENTFUL_ACCESS_TOKEN for static generation.'
+    );
+    return [];
+  }
 }
 
 export default async function BlogPost({ params }: { params: { slug: string } }) {
