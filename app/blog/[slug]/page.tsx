@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
+import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 import Header from '@/components/Header';
 import Subscribe from '@/components/Subscribe';
 import Footer from '@/components/Footer';
@@ -82,13 +83,13 @@ export default async function BlogPost({ params }: { params: { slug: string } })
 
           <div className="prose prose-lg max-w-none text-gray-900">
             {fields.content && (
-              <div
-                dangerouslySetInnerHTML={{
-                  __html: typeof fields.content === 'string'
-                    ? fields.content.replace(/\n/g, '<br />')
-                    : JSON.stringify(fields.content, null, 2).replace(/\n/g, '<br />'),
-                }}
-              />
+              typeof fields.content === 'string' ? (
+                <div dangerouslySetInnerHTML={{
+                  __html: fields.content.replace(/\n/g, '<br />'),
+                }} />
+              ) : (
+                documentToReactComponents(fields.content)
+              )
             )}
           </div>
         </div>
