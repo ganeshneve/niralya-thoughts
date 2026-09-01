@@ -31,15 +31,19 @@ export default async function BlogPost({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
+  console.log(`[BlogPost] Loading post with slug: "${slug}"`);
+
   const post = await getBlogPostBySlug(slug);
 
   if (!post) {
+    console.error(`[BlogPost] Post not found for slug: "${slug}"`);
     return (
       <>
         <Header />
         <div className="py-20 px-10 text-center">
           <h1 className="text-3xl font-bold text-gray-900">Post not found</h1>
-          <Link href="/" className="text-blue-600 hover:text-blue-700 mt-4 inline-block">
+          <p className="text-gray-600 mt-2 text-sm">Slug: {slug}</p>
+          <Link href="/" className="text-blue-600 hover:text-blue-700 mt-6 inline-block">
             ← Back to home
           </Link>
         </div>

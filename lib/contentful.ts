@@ -72,9 +72,26 @@ export async function getFeaturedPost() {
 
 export async function getBlogPostBySlug(slug: string) {
   const client = getContentfulClient();
+  // Decode URL-encoded slug and trim whitespace
+  const decodedSlug = decodeURIComponent(slug).trim();
+
   const entries = await client.getEntries({
     content_type: 'blogPost',
-    'fields.slug': slug,
+    'fields.slug': decodedSlug,
   });
+
+  if (!entries.items[0]) {
+    console.warn(`Blog post not found for slug: "${decodedSlug}" (original: "${slug}")`);
+    // Try alternative: search with different case or partial match
+    const allPosts = await getBlogPosts();
+    const post = allPosts.find(
+      (p: any) => (p.fields as any)?.slug?.toLowerCase() === decodedSlug.toLowerCase()
+    );
+    if (post) {
+      console.log(`Found post with case-insensitive match: "${decodedSlug}"`);
+      return post;
+    }
+  }
+
   return entries.items[0];
 }
