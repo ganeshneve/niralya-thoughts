@@ -18,7 +18,7 @@ This is a Next.js blog built with **Contentful CMS** and styled with the **Midni
    - `title` (Text, required)
    - `slug` (Text, required)
    - `excerpt` (Text, long text)
-   - `content` (Text, long text)
+   - `content` (Rich Text, required) — supports formatted text, links, and embedded media
    - `image` (Media)
    - `createdAt` (Date & time, auto-managed)
 
@@ -46,6 +46,8 @@ This is a Next.js blog built with **Contentful CMS** and styled with the **Midni
    NEXT_PUBLIC_CONTENTFUL_ACCESS_TOKEN=your_access_token_here
    NEXT_PUBLIC_CONTENTFUL_PREVIEW_TOKEN=your_preview_token_here
    ```
+
+   **Note:** The `NEXT_PUBLIC_CONTENTFUL_SPACE_ID` and `NEXT_PUBLIC_CONTENTFUL_ACCESS_TOKEN` are required. The preview token is optional — if not provided, draft preview will use the published-content API instead.
 
 ### 4. Run Locally
 
