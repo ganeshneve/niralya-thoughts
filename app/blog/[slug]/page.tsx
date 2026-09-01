@@ -2,8 +2,6 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 import Header from '@/components/Header';
-import Subscribe from '@/components/Subscribe';
-import Footer from '@/components/Footer';
 import { getBlogPostBySlug, getBlogPosts } from '@/lib/contentful';
 
 export const revalidate = 60; // Revalidate every 60 seconds
@@ -47,7 +45,6 @@ export default async function BlogPost({
             ← Back to home
           </Link>
         </div>
-        <Footer />
       </>
     );
   }
@@ -158,9 +155,6 @@ export default async function BlogPost({
             </div>
         </div>
       </article>
-
-      <Subscribe />
-      <Footer />
     </>
   );
 }
