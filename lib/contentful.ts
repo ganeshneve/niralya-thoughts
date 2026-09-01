@@ -15,7 +15,7 @@ export async function getBlogPosts() {
   const client = contentfulClient;
   const entries = await client.getEntries({
     content_type: 'blogPost',
-    order: '-sys.createdAt',
+    order: ['-sys.createdAt'],
   });
   return entries.items;
 }
@@ -24,7 +24,7 @@ export async function getFeaturedPost() {
   const client = contentfulClient;
   const entries = await client.getEntries({
     content_type: 'blogPost',
-    order: '-sys.createdAt',
+    order: ['-sys.createdAt'],
     limit: 1,
   });
   return entries.items[0];
