@@ -6,6 +6,8 @@ import Subscribe from '@/components/Subscribe';
 import Footer from '@/components/Footer';
 import { getBlogPostBySlug, getBlogPosts } from '@/lib/contentful';
 
+export const revalidate = 60; // Revalidate every 60 seconds
+
 export async function generateStaticParams() {
   try {
     const posts = await getBlogPosts();

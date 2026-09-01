@@ -5,6 +5,8 @@ import Subscribe from '@/components/Subscribe';
 import Footer from '@/components/Footer';
 import { getFeaturedPost, getBlogPosts } from '@/lib/contentful';
 
+export const revalidate = 60; // Revalidate every 60 seconds
+
 export default async function Home() {
   let featuredPost: any = null;
   let allPosts: any[] = [];
