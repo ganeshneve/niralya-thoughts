@@ -23,38 +23,40 @@ export default function Subscribe() {
   };
 
   return (
-    <section className="bg-gradient-to-r from-indigo-500 to-purple-600 py-20 px-10 text-center">
-      <div className="max-w-2xl mx-auto">
-        <h2 className="text-4xl font-bold text-white mb-4">Stay Updated</h2>
-        <p className="text-lg text-white/90 mb-8">
-          Subscribe to receive new essays and reflections in your inbox.
-        </p>
+    <footer className="bg-white border-t border-gray-200 py-12 px-6 md:px-10">
+      <div className="max-w-6xl mx-auto">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6">
+          <div>
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Subscribe</h3>
+            <p className="text-sm text-gray-600">Get new essays delivered to your inbox.</p>
+          </div>
 
-        <form onSubmit={handleSubmit} className="flex gap-3 flex-col sm:flex-row">
-          <input
-            type="email"
-            placeholder="Enter your email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-            className="flex-1 px-4 py-3 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-white"
-          />
-          <button
-            type="submit"
-            disabled={status === 'loading'}
-            className="bg-white text-indigo-600 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition disabled:opacity-50"
-          >
-            {status === 'loading' ? 'Subscribing...' : 'Subscribe'}
-          </button>
-        </form>
+          <form onSubmit={handleSubmit} className="flex gap-2 flex-col sm:flex-row sm:w-96">
+            <input
+              type="email"
+              placeholder="your@email.com"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+              className="flex-1 px-3 py-2 text-sm border border-gray-300 rounded-md text-gray-900 placeholder-gray-500 focus:outline-none focus:border-gray-400 focus:ring-1 focus:ring-gray-400"
+            />
+            <button
+              type="submit"
+              disabled={status === 'loading'}
+              className="bg-gray-900 text-white px-4 py-2 text-sm rounded-md font-medium hover:bg-gray-800 transition disabled:opacity-50"
+            >
+              {status === 'loading' ? '...' : 'Join'}
+            </button>
+          </form>
+        </div>
 
         {status === 'success' && (
-          <p className="text-white/90 mt-3 text-sm">✓ Thanks for subscribing!</p>
+          <p className="text-gray-600 mt-4 text-xs">✓ Thanks for subscribing!</p>
         )}
         {status === 'error' && (
-          <p className="text-red-200 mt-3 text-sm">Error subscribing. Please try again.</p>
+          <p className="text-gray-500 mt-4 text-xs">Error subscribing. Please try again.</p>
         )}
       </div>
-    </section>
+    </footer>
   );
 }
